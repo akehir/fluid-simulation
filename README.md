@@ -6,7 +6,7 @@ You can see the component running in the background of the example app. Press `p
 
 ## Getting Started
 
-If you just want to use the library, follow the following 3 simple steps. For contributing, or building the library locally, see the section on [building](#Building) the library.
+If you just want to use the library, follow the following 3 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
 
 Supported Angular Versions
 | Angular Version | WebGL Fluid Simulation V |
