@@ -1,0 +1,57 @@
+<main>
+<h1>{{ title }}</h1>
+<section>
+  <p>If you want to use a fancy WebGL fluid simulation in your Angular App, this small demo can get you started.</p>
+  <p>You can see the component running in the background of this example app. Press <strong>p</strong> to toggle the pause, and press <strong>s</strong> to download a screenshot of the simulation. Press <strong>w</strong> to create more splashes.</p>
+</section>
+<section>
+  <h2>Example</h2>
+  <app-example></app-example>
+</section>
+<section>
+  <h2>Usage</h2>
+  <h3>Step 1: Install</h3>
+  <p>Install the npm package.</p>
+  <pre>npm i @triangular/fluid-simulation</pre>
+
+  <h3>Step 2: Add to NgModule Imports</h3>
+  <p>Then, add the <strong>FluidSimulationModule</strong> to the imports of your app, as follows:</p>
+  <pre>{{step2}}</pre>
+
+  <h3>Step 3: Add Component to App</h3>
+  <p>Now you can use the provided component <strong>&lt;webgl-fluid-simulation&gt;&lt;/webgl-fluid-simulation&gt;</strong> in your app.
+  <pre>{{step3a}}</pre>
+
+  <p>Depending on whether you want to use certain features, or positions for the module, you can add styles as follows.
+    It is important to note, that the canvas itself should not be absolutely positioned.</p>
+
+  <pre>{{step3b}}</pre>
+
+  <p>You can configure your module by using the <strong>FluidSimulationModule.forRoot()</strong> method.</p>
+
+  <pre>{{step3c}}</pre>
+
+  <p>If you want to use a dithering texture, you will need to change the config, and provide the texture file as a .png</p>
+
+  <p>The example component has the png under <strong>assets/LDR_LLL1_0.png</strong>, and configured shown as above.</p>
+
+
+  <p>In order to change the config interactively (for instance pausing and playing the simulation, or changing the settings) , you can use the provided service.</p>
+
+  <p>The service will be extended to include more functionality (for example triggering screenshots or adding splashes).</p>
+
+  <pre>{{step3d}}</pre>
+
+</section>
+<section>
+  <h2>Source Code</h2>
+  <p>
+    The source code is published at <a href="https://git.akehir.com/akehir/fluid-simulation">akehir.com</a> and mirrored on <a href="https://github.com/akehir/fluid-simulation">Github</a>.
+  </p>
+  <p>The package ist published to npm at <a href="https://www.npmjs.com/package/@triangular/fluid-simulation">@triangular/fluid-simulation</a>.</p>
+</section>
+<section>
+  <h2>License</h2>
+  <p>This project is licensed under the MIT License</p>
+</section>
+</main>

@@ -1,0 +1,21 @@
+{
+  "name": "@triangular/fluid-simulation",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
+  },
+  "homepage": "https://fluid-simulation.akehir.com",
+  "license" : "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akehir/fluid-simulation"
+  },
+  "bugs": { "url" : "https://github.com/akehir/fluid-simulation/issues"
+  , "email" : "raphael@ochsenbe.in"
+  },
+  "author": { "name" : "Raphael Ochsenbein"
+            , "email" : "raphael@ochsenbe.in"
+            , "url" : "https://akehir.com/"
+  }
+}
