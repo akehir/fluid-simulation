@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FluidSimulationComponent } from './components';
-import { FluidSimulationService } from './services';
-import { FluidSimulationConfigValue, FluidSimulationConfig } from './config';
+import { FluidSimulationComponent } from './components/fluid-simulation.component';
+import { FluidSimulationService } from './services/fluid-simulation-service';
+import { FluidSimulationConfigValue, FluidSimulationConfig } from './config/fluid-simulation-config';
 import { Partial } from './common';
 
 @NgModule({

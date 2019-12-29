@@ -19,10 +19,10 @@
       "dom"
     ],
     "paths": {
-      "@triangular/password-checker": [
+      "@triangular/fluid-simulation": [
         "dist/fluid-simulation-lib"
       ],
-      "@triangular/password-checker/*": [
+      "@triangular/fluid-simulation/*": [
         "dist/fluid-simulation-lib/*"
       ]
     }

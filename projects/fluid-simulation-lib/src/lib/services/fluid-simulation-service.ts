@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { FluidSimulationConfig, FluidSimulationConfigValue } from '../config';
-import { defaultConfig } from '../config';
+import { FluidSimulationConfig, FluidSimulationConfigValue } from '../config/fluid-simulation-config';
+import { defaultConfig } from '../config/default-config';
 import { Partial } from '../common';
 
 @Injectable()

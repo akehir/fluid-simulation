@@ -22,16 +22,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Angular Pwned Password Checker Directive'`, () => {
+  it(`should have as title 'Angular WebGL Fluid Simulation'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Angular Pwned Password Checker Directive');
+    expect(app.title).toEqual('Angular WebGL Fluid Simulation');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Angular Pwned Password Checker Directive');
+    expect(compiled.querySelector('h1').textContent).toContain('Angular WebGL Fluid Simulation');
   });
 });

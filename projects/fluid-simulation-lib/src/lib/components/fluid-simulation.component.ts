@@ -5,10 +5,10 @@ import {
   OnInit,
   ViewChild,
   ViewEncapsulation,
-  Inject, NgZone,
+  NgZone,
 } from '@angular/core';
 
-import { DOCUMENT } from '@angular/common';
+import { FluidSimulationService } from '../services/fluid-simulation-service';
 
 import {
   Context,
@@ -56,8 +56,6 @@ import {
   updatePointerDownData,
   isMobile,
 } from '../common';
-
-import {FluidSimulationService} from '../services';
 
 @Component({
   // tslint:disable
@@ -130,13 +128,13 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // WebGL Fluid Animation
     this.canvas = this.canvasRef.nativeElement;
-    this.resizeCanvas(this.canvas);
 
     if (!(this.canvas instanceof HTMLCanvasElement)) {
       // in case the canvas is not what's expected, we have a problem
-      throw new Error();
+      throw new Error('Canvas element is not correctly provided. Cannot initialize webgl fluid simulation.');
     }
 
+    this.resizeCanvas(this.canvas);
     const ctx = getWebGLContext(this.canvas);
     this.gl = ctx.gl;
     this.ext = ctx.ext;
