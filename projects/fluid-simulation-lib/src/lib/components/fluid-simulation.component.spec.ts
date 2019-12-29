@@ -3,8 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FluidSimulationComponent } from './fluid-simulation.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
-import { defaultConfig, FluidSimulationConfigValue } from '../config';
-import { FluidSimulationService } from '../services';
+import { FluidSimulationConfigValue } from '../config/fluid-simulation-config';
+import { defaultConfig } from '../config/default-config';
+import { FluidSimulationService } from '../services/fluid-simulation-service';
 
 describe('FluidSimulationComponent', () => {
   let component: FluidSimulationComponent;
