@@ -11,7 +11,7 @@ If you just want to use the library, follow the following 3 simple steps. For co
 Supported Angular Versions
 | Angular Version | WebGL Fluid Simulation V |
 | --------------- | ------------------------ |
-| 8.x             | 1.0.0                    |
+| 8.x             | 1.0.1                    |
 
 ### Step 1: Install
 
@@ -176,6 +176,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ### Version History
 
 - 1.0.0: Initial Release
+- 1.0.1: Update Readme
 
 ## Authors
 
