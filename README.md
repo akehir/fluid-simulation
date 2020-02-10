@@ -6,12 +6,13 @@ You can see the component running in the background of the example app. Press `p
 
 ## Getting Started
 
-If you just want to use the library, follow the following 3 simple steps. For contributing, or building the library locally, see the section on [building](#Building) the library.
+If you just want to use the library, follow the following 3 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
 
 Supported Angular Versions
 | Angular Version | WebGL Fluid Simulation V |
 | --------------- | ------------------------ |
-| 8.x             | 1.0.1                    |
+| 7.x, 8.x        | 1.0.1                    |
+| 9.x             | 2.0.0                    |
 
 ### Step 1: Install
 
