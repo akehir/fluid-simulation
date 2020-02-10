@@ -7,20 +7,20 @@
       "root": "projects/fluid-simulation-lib",
       "sourceRoot": "projects/fluid-simulation-lib/src",
       "projectType": "library",
-      "prefix": "pwc",
+      "prefix": "webgl",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/fluid-simulation-lib/tsconfig.lib.json",
             "project": "projects/fluid-simulation-lib/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/fluid-simulation-lib/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {

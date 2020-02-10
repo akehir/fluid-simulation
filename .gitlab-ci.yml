@@ -32,7 +32,7 @@ deploy_master:
      - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>~/.npmrc
      - cd $CI_PROJECT_DIR/dist/fluid-simulation-lib
      - npm publish --access public
-   after_script:
+  after_script:
      - rm -f ~/.npmrc
   only:
   - master
