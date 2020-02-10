@@ -9,7 +9,7 @@ import { Partial } from './common';
   exports: [FluidSimulationComponent]
 })
 export class FluidSimulationModule {
-  static forRoot(config: Partial<FluidSimulationConfig> = {}): ModuleWithProviders {
+  static forRoot(config: Partial<FluidSimulationConfig> = {}): ModuleWithProviders<FluidSimulationModule> {
     return {
       ngModule: FluidSimulationModule,
       providers: [
