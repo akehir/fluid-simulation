@@ -4,6 +4,9 @@ If you want to use a fancy WebGL fluid simulation in your Angular App, this smal
 
 You can see the component running in the background of the example app. Press `p` to toggle the pause, and press `s` to download a screenshot of the simulation. Press `w` to create more splashes.
 
+## Demo
+You can find the live demo at: https://fluid-simulation.akehir.com.
+
 ## Getting Started
 
 If you just want to use the library, follow the following 3 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
@@ -12,7 +15,7 @@ Supported Angular Versions
 | Angular Version | WebGL Fluid Simulation V |
 | --------------- | ------------------------ |
 | 7.x, 8.x        | 1.0.1                    |
-| 9.x             | 2.0.0                    |
+| 9.x             | ^2.0.1                   |
 
 ### Step 1: Install
 
