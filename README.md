@@ -14,8 +14,9 @@ If you just want to use the library, follow the following 3 simple steps. For co
 Supported Angular Versions
 | Angular Version | WebGL Fluid Simulation V |
 | --------------- | ------------------------ |
-| 7.x, 8.x        | 1.0.1                    |
-| 9.x             | ^2.0.1                   |
+|  7.x, 8.x       | 1.0.1                    |
+|  9.x            | ^2.0.0                   |
+| 10.x            | ^3.0.0                   |
 
 ### Step 1: Install
 
