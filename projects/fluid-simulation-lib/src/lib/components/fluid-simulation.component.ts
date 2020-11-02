@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
   ViewEncapsulation,
-  NgZone,
+  NgZone, Inject,
 } from '@angular/core';
 
 import { FluidSimulationService } from '../services/fluid-simulation-service';
@@ -56,8 +56,9 @@ import {
   updatePointerDownData,
   isMobile,
 } from '../common';
-import { concat, defer, fromEvent, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, concat, defer, fromEvent, Observable, of } from 'rxjs';
+import { distinctUntilChanged, flatMap, map, mergeMap } from 'rxjs/operators';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   // tslint:disable
@@ -85,6 +86,9 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   private hidden = true;
   private MOUSE_INTERACTION_LISTENERS: boolean;
   private KEYS_INTERACTION_LISTENERS: boolean;
+  private pageVisible$: Observable<boolean>;
+  private canvasVisible$: Observable<boolean>;
+  private activeStateChange$: Observable<boolean>;
 
 
   // context
@@ -126,18 +130,20 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
   private displayMaterial: Material;
 
-  pageVisible$ = concat(
-    defer(() => of(!document.hidden)),
-    fromEvent(document, 'visibilitychange')
-      .pipe(
-        map(e => !document.hidden)
-      )
-  );
-
   constructor(
+    @Inject(DOCUMENT) document: any,
     private zone: NgZone,
     private config: FluidSimulationService,
-    ) { }
+    ) {
+    // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
+    this.pageVisible$ = concat(
+      defer(() => of(!document.hidden)),
+      fromEvent(document, 'visibilitychange')
+        .pipe(
+          map(e => !document.hidden)
+        )
+    );
+  }
 
   ngOnInit() {
   }
@@ -162,6 +168,33 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
       // in case the canvas is not what's expected, we have a problem
       throw new Error('Canvas element is not correctly provided. Cannot initialize webgl fluid simulation.');
     }
+
+    // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
+    this.canvasVisible$ = new Observable(observer => {
+      const intersectionObserver = new IntersectionObserver(entries => {
+        observer.next(entries);
+      });
+
+      intersectionObserver.observe(this.canvas);
+
+      return () => { intersectionObserver.disconnect(); };
+
+    })
+      .pipe (
+        map(entries => entries[0] || {isIntersecting: false}),
+        map(entry => entry.isIntersecting),
+        distinctUntilChanged(),
+      );
+
+    // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
+    this.activeStateChange$ = combineLatest([
+      this.pageVisible$,
+      this.canvasVisible$,
+    ])
+      .pipe (
+        map(([pageVisible, elementVisible]) => pageVisible && elementVisible),
+        distinctUntilChanged()
+      );
 
     this.resizeCanvas(this.canvas);
     const ctx = getWebGLContext(this.canvas);
@@ -214,11 +247,13 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
       this.lastUpdateTime = Date.now();
       this.colorUpdateTimer = 0.0;
-      // this.update();
-      this.pageVisible$.subscribe((visible) => {
+
+      // Only if element is visible, and tab is open, we execute the rendering.
+      // We also only start the rendering, if the component was previously hidden.
+      this.activeStateChange$.subscribe((visible) => {
         if(visible && this.hidden) {
-          this.hidden = !visible;
-          this.update();
+          this.hidden = !visible; // need to change the state, otherwise update will immediately return
+          this.update(); // Update will call itself until visibility changes or component is destroyed
         }
 
         this.hidden = !visible;
