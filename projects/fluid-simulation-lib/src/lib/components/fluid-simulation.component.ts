@@ -56,6 +56,8 @@ import {
   updatePointerDownData,
   isMobile,
 } from '../common';
+import { concat, defer, fromEvent, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   // tslint:disable
@@ -77,6 +79,13 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
   private lastUpdateTime = Date.now();
   private colorUpdateTimer = 0.0;
+
+  // Component State
+  private destroyed = false;
+  private hidden = true;
+  private MOUSE_INTERACTION_LISTENERS: boolean;
+  private KEYS_INTERACTION_LISTENERS: boolean;
+
 
   // context
   private gl: Context | null;
@@ -117,12 +126,32 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
   private displayMaterial: Material;
 
+  pageVisible$ = concat(
+    defer(() => of(!document.hidden)),
+    fromEvent(document, 'visibilitychange')
+      .pipe(
+        map(e => !document.hidden)
+      )
+  );
+
   constructor(
     private zone: NgZone,
     private config: FluidSimulationService,
     ) { }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true;
+
+    if(this.MOUSE_INTERACTION_LISTENERS) {
+      this.canvas.removeEventListener('mousedown', this.handleMouseDown)
+    }
+
+    if(this.KEYS_INTERACTION_LISTENERS) {
+      window.removeEventListener('keydown', this.handleKeyDown);
+    }
   }
 
   ngAfterViewInit() {
@@ -185,18 +214,19 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
       this.lastUpdateTime = Date.now();
       this.colorUpdateTimer = 0.0;
-      this.update();
+      // this.update();
+      this.pageVisible$.subscribe((visible) => {
+        if(visible && this.hidden) {
+          this.hidden = !visible;
+          this.update();
+        }
+
+        this.hidden = !visible;
+      });
 
       if (this.config.MOUSE_INTERACTION_LISTENERS) {
-        this.canvas.addEventListener('mousedown', e => {
-          const posX = scaleByPixelRatio(e.offsetX);
-          const posY = scaleByPixelRatio(e.offsetY);
-          let pointer = this.pointers.find(p => p.id === -1);
-          if (pointer === null) {
-            pointer = new PointerPrototype();
-          }
-          updatePointerDownData(this.canvas, pointer, -1, posX, posY);
-        });
+        this.MOUSE_INTERACTION_LISTENERS = true; // listeners were added
+        this.canvas.addEventListener('mousedown', this.handleMouseDown);
 
         this.canvas.addEventListener('mousemove', e => {
           const pointer = this.pointers[0];
@@ -250,17 +280,8 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
         !!this.config.SPLASH_KEY ||
         !!this.config.SCREENSHOT_KEY_CODE
       ) {
-        window.addEventListener('keydown', e => {
-          if (e.code === this.config.PAUSE_KEY_CODE) {
-            this.config.PAUSED = !this.config.PAUSED;
-          }
-          if (e.key === this.config.SPLASH_KEY) {
-            this.splatStack.push(Math.floor(Math.random() * 20) + 5);
-          }
-          if (e.code === this.config.SCREENSHOT_KEY_CODE) {
-            this.captureScreenshot();
-          }
-        });
+        this.KEYS_INTERACTION_LISTENERS = true;
+        window.addEventListener('keydown', this.handleKeyDown);
       }
 
       this.addRandomPoints();
@@ -338,6 +359,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   update() {
+    if (this.destroyed || this.hidden) { return; }
     const dt = this.calcDeltaTime();
     if (this.resizeCanvas(this.canvas)) {
       this.initFramebuffers();
@@ -356,7 +378,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   addRandomPoints() {
-    if (!this.config.PAUSED && this.config.ADD_SPLASHES_IN_RANDOM_INTERVALS) {
+    if (!this.config.PAUSED && this.config.ADD_SPLASHES_IN_RANDOM_INTERVALS && !this.hidden) {
       this.splatStack.push(Math.floor(Math.random() * 20) + 5);
     }
 
@@ -671,6 +693,28 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     const datauri = captureCanvas.toDataURL();
     downloadURI(`${this.config.SCREENSHOT_FILE_NAME}.png`, datauri);
     URL.revokeObjectURL(datauri);
+  }
+
+  private handleMouseDown(e: MouseEvent)  {
+    const posX = scaleByPixelRatio(e.offsetX);
+    const posY = scaleByPixelRatio(e.offsetY);
+    let pointer = this.pointers.find(p => p.id === -1);
+    if (pointer === null) {
+      pointer = new PointerPrototype();
+    }
+    updatePointerDownData(this.canvas, pointer, -1, posX, posY);
+  }
+
+  private handleKeyDown(e: KeyboardEvent) {
+    if (e.code === this.config.PAUSE_KEY_CODE) {
+      this.config.PAUSED = !this.config.PAUSED;
+    }
+    if (e.key === this.config.SPLASH_KEY) {
+      this.splatStack.push(Math.floor(Math.random() * 20) + 5);
+    }
+    if (e.code === this.config.SCREENSHOT_KEY_CODE) {
+      this.captureScreenshot();
+    }
   }
 
 }
