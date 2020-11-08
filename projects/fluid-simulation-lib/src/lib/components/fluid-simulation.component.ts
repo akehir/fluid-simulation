@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
   ViewEncapsulation,
-  NgZone, Inject,
+  NgZone, Inject, OnDestroy,
 } from '@angular/core';
 
 import { FluidSimulationService } from '../services/fluid-simulation-service';
@@ -69,7 +69,7 @@ import { DOCUMENT } from '@angular/common';
   // styleUrls: ['./fluid-simulation.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class FluidSimulationComponent implements OnInit, AfterViewInit {
+export class FluidSimulationComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('canvas', {static: true}) canvasRef: ElementRef;
 
   private canvas: HTMLCanvasElement;
@@ -151,11 +151,11 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   ngOnDestroy() {
     this.destroyed = true;
 
-    if(this.MOUSE_INTERACTION_LISTENERS) {
-      this.canvas.removeEventListener('mousedown', this.handleMouseDown)
+    if (this.MOUSE_INTERACTION_LISTENERS) {
+      this.canvas.removeEventListener('mousedown', this.handleMouseDown);
     }
 
-    if(this.KEYS_INTERACTION_LISTENERS) {
+    if (this.KEYS_INTERACTION_LISTENERS) {
       window.removeEventListener('keydown', this.handleKeyDown);
     }
   }
@@ -251,7 +251,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
       // Only if element is visible, and tab is open, we execute the rendering.
       // We also only start the rendering, if the component was previously hidden.
       this.activeStateChange$.subscribe((visible) => {
-        if(visible && this.hidden) {
+        if (visible && this.hidden) {
           this.hidden = !visible; // need to change the state, otherwise update will immediately return
           this.update(); // Update will call itself until visibility changes or component is destroyed
         }
@@ -730,7 +730,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     URL.revokeObjectURL(datauri);
   }
 
-  private handleMouseDown(e: MouseEvent)  {
+  private handleMouseDown = (e: MouseEvent) => {
     const posX = scaleByPixelRatio(e.offsetX);
     const posY = scaleByPixelRatio(e.offsetY);
     let pointer = this.pointers.find(p => p.id === -1);
@@ -740,7 +740,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     updatePointerDownData(this.canvas, pointer, -1, posX, posY);
   }
 
-  private handleKeyDown(e: KeyboardEvent) {
+  private handleKeyDown = (e: KeyboardEvent) => {
     if (e.code === this.config.PAUSE_KEY_CODE) {
       this.config.PAUSED = !this.config.PAUSED;
     }
