@@ -57,7 +57,7 @@ import {
   isMobile,
 } from '../common';
 import { combineLatest, concat, defer, fromEvent, Observable, of } from 'rxjs';
-import { distinctUntilChanged, flatMap, map, mergeMap } from 'rxjs/operators';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
 @Component({

@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:full": "npm run build:lib && npm start -- --port=4404 --host=0.0.0.0",
     "build": "ng build",
     "build:lib": "npm run ng build fluid-simulation-lib --prod",
     "test": "npm run test:lib && npm run test:example",
