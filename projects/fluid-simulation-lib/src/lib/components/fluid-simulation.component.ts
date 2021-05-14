@@ -61,9 +61,9 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  // tslint:disable
+  /* eslint-disable */
   selector: 'webgl-fluid-simulation',
-  // tslint:enable
+  /* eslint-enable */
   templateUrl: './fluid-simulation.component.html',
   styleUrls: [],
   // styleUrls: ['./fluid-simulation.component.scss'],
@@ -302,7 +302,7 @@ export class FluidSimulationComponent implements OnInit, OnDestroy, AfterViewIni
 
         window.addEventListener('touchend', e => {
           const touches = e.changedTouches;
-          for (let i = 0; i < touches.length; i++) { // tslint:disable-line
+          for (let i = 0; i < touches.length; i++) { // eslint-disable-line
             const pointer = this.pointers.find(p => p.id === touches[i].identifier);
             if (pointer === null) { continue; }
             updatePointerUpData(pointer);
@@ -364,8 +364,8 @@ export class FluidSimulationComponent implements OnInit, OnDestroy, AfterViewIni
 
     this.bloomFramebuffers.length = 0;
     for (let i = 0; i < this.config.BLOOM_ITERATIONS; i++) {
-      const width = res.width >> (i + 1); // tslint:disable-line:no-bitwise
-      const height = res.height >> (i + 1); // tslint:disable-line:no-bitwise
+      const width = res.width >> (i + 1); // eslint-disable-line no-bitwise
+      const height = res.height >> (i + 1); // eslint-disable-line no-bitwise
 
       if (width < 2 || height < 2) { break; }
 
@@ -621,7 +621,7 @@ export class FluidSimulationComponent implements OnInit, OnDestroy, AfterViewIni
     this.blit(last.fbo);
 
     this.bloomBlurProgram.bind();
-    for (let i = 0; i < this.bloomFramebuffers.length; i++) { // tslint:disable-line
+    for (let i = 0; i < this.bloomFramebuffers.length; i++) { // eslint-disable-line
       const dest = this.bloomFramebuffers[i];
       this.gl.uniform2f(this.bloomBlurProgram.uniforms.texelSize, last.texelSizeX, last.texelSizeY);
       this.gl.uniform1i(this.bloomBlurProgram.uniforms.uTexture, last.attach(0));
@@ -738,7 +738,7 @@ export class FluidSimulationComponent implements OnInit, OnDestroy, AfterViewIni
       pointer = new PointerPrototype();
     }
     updatePointerDownData(this.canvas, pointer, -1, posX, posY);
-  }
+  };
 
   private handleKeyDown = (e: KeyboardEvent) => {
     if (e.code === this.config.PAUSE_KEY_CODE) {
@@ -750,6 +750,6 @@ export class FluidSimulationComponent implements OnInit, OnDestroy, AfterViewIni
     if (e.code === this.config.SCREENSHOT_KEY_CODE) {
       this.captureScreenshot();
     }
-  }
+  };
 
 }

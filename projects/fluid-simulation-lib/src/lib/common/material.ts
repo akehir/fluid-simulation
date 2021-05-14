@@ -24,7 +24,7 @@ export class Material {
 
   setKeywords(keywords) {
     let hash = 0;
-    for (let i = 0; i < keywords.length; i++) { // tslint:disable-line
+    for (let i = 0; i < keywords.length; i++) { // eslint-disable-line
       hash += hashCode(keywords[i]);
     }
 
