@@ -190,6 +190,7 @@ We use [SemVer](http://semver.org/) for versioning.
 - 4.0.0: Add support for Angular 11
 - 5.0.0: Add support for Angular 12
 - 6.0.0: Add support for Angular 13
+- 6.0.1: Upgrade rxjs to 7.4
 
 ## Authors
 
