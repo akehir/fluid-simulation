@@ -21,6 +21,7 @@ Supported Angular Versions
 | 12.x            | ^5.0.0                   |
 | 13.x            | ^6.0.0                   |
 | 14.x            | ^7.0.0                   |
+| 15.x            | ^8.0.0                   |
 
 ### Step 1: Install
 
@@ -180,18 +181,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. 
-
-### Version History
-
-- 1.0.0: Initial Release
-- 1.0.1: Update Readme
-- 2.0.0: Add support for Angular 9
-- 3.0.0: Add support for Angular 10
-- 4.0.0: Add support for Angular 11
-- 5.0.0: Add support for Angular 12
-- 6.0.0: Add support for Angular 13
-- 6.0.1: Upgrade rxjs to 7.4
+We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
