@@ -7,6 +7,8 @@
     "start:full": "npm run build:lib && npm start -- --port=4404 --host=0.0.0.0",
     "start:standalone": "ng serve --project example-app-standalone --host 0.0.0.0",
     "build": "npm run build:lib && npm run build:app && npm run build:standalone",
+    "build:app": "npm run ng build example-app",
+    "build:standalone": "npm run ng build example-app-standalone",
     "build:lib": "npm run ng build fluid-simulation-lib",
     "test": "npm run test:lib && npm run test:example && npm run test:standalone",
     "test:standalone": "ng test example-app-standalone --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
