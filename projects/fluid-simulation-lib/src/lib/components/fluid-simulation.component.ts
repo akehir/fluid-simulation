@@ -2,7 +2,6 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnInit,
   ViewChild,
   ViewEncapsulation,
   NgZone, Inject, OnDestroy,
@@ -68,8 +67,9 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: [],
   // styleUrls: ['./fluid-simulation.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  standalone: true
 })
-export class FluidSimulationComponent implements OnInit, OnDestroy, AfterViewInit {
+export class FluidSimulationComponent implements OnDestroy, AfterViewInit {
   @ViewChild('canvas', {static: true}) canvasRef: ElementRef;
 
   private canvas: HTMLCanvasElement;
@@ -140,12 +140,9 @@ export class FluidSimulationComponent implements OnInit, OnDestroy, AfterViewIni
       defer(() => of(!document.hidden)),
       fromEvent(document, 'visibilitychange')
         .pipe(
-          map(e => !document.hidden)
+          map(() => !document.hidden)
         )
     );
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {

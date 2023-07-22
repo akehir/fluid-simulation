@@ -5,7 +5,8 @@ import { FluidSimulationConfigValue, FluidSimulationConfig } from './config/flui
 import { Partial } from './common';
 
 @NgModule({
-  declarations: [FluidSimulationComponent],
+  declarations: [],
+  imports: [FluidSimulationComponent],
   exports: [FluidSimulationComponent]
 })
 export class FluidSimulationModule {

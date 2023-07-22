@@ -5,7 +5,7 @@ import {ngModule, component, styles, service, moduleWithConfiguration} from './c
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: [],
 })
 export class AppComponent {
   title = 'Angular WebGL Fluid Simulation';
@@ -14,6 +14,4 @@ export class AppComponent {
   step3b = styles;
   step3c = moduleWithConfiguration;
   step3d = service;
-
-  constructor() {}
 }

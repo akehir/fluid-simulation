@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FluidSimulationComponent } from './fluid-simulation.component';
 
@@ -11,11 +11,12 @@ describe('FluidSimulationComponent', () => {
   let component: FluidSimulationComponent;
   let fixture: ComponentFixture<FluidSimulationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FluidSimulationComponent ],
+      declarations: [  ],
       imports: [
         RouterTestingModule,
+        FluidSimulationComponent
       ],
       providers: [
         {

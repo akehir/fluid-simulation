@@ -10,26 +10,24 @@
       ],
       "parserOptions": {
         "project": [
-          "projects/example-app-e2e/tsconfig.e2e.json"
-        ],
-        "createDefaultProgram": true
+          "projects/example-app-standalone/tsconfig.(app|spec).json"
+        ]
       },
       "rules": {
-        "@typescript-eslint/explicit-member-accessibility": [
-          "off",
-          {
-            "accessibility": "explicit"
-          }
-        ],
-        "arrow-parens": [
-          "off",
-          "always"
-        ],
-        "import/order": "off",
-        "max-len": [
+        "@angular-eslint/directive-selector": [
           "error",
           {
-            "code": 180
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
           }
         ]
       }

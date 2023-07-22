@@ -22,6 +22,7 @@ Supported Angular Versions
 | 13.x            | ^6.0.0                   |
 | 14.x            | ^7.0.0                   |
 | 15.x            | ^8.0.0                   |
+| 16.x            | ^9.0.0                   |
 
 ### Step 1: Install
 
@@ -34,6 +35,8 @@ npm i @triangular/fluid-simulation
 ### Step 2: Add to NgModule Imports
 
 Then, add the __FluidSimulationModule__ to the imports of your app.
+
+_If you're using standalone components, you can skip this step._
 
 ```typescript
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
