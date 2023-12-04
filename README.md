@@ -12,17 +12,18 @@ You can find the live demo at: https://fluid-simulation.akehir.com.
 If you just want to use the library, follow the following 3 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
 
 Supported Angular Versions
-| Angular Version | WebGL Fluid Simulation V |
-| --------------- | ------------------------ |
-|  7.x, 8.x       | ^1.0.1                   |
-|  9.x            | ^2.0.0                   |
-| 10.x            | ^3.0.0                   |
-| 11.x            | ^4.0.0                   |
-| 12.x            | ^5.0.0                   |
-| 13.x            | ^6.0.0                   |
-| 14.x            | ^7.0.0                   |
-| 15.x            | ^8.0.0                   |
-| 16.x            | ^9.0.0                   |
+| Angular Version | WebGL Fluid Simulation V  |
+| --------------- | ------------------------- |
+|  7.x, 8.x       |   1.0.1                   |
+|  9.x            |  ^2.0.0                   |
+| 10.x            |  ^3.0.0                   |
+| 11.x            |  ^4.0.0                   |
+| 12.x            |  ^5.0.0                   |
+| 13.x            |  ^6.0.0                   |
+| 14.x            |  ^7.0.0                   |
+| 15.x            |  ^8.0.0                   |
+| 16.x            |  ^9.0.0                   |
+| 17.x            | ^10.0.0                   |
 
 ### Step 1: Install
 

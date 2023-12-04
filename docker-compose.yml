@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+    tfc:
+        container_name: fluid-simulation-example-app
+        image: fluid-simulation-example-app
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "8080:8811"

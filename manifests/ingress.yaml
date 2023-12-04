@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fluid-simulation-ingress
+  namespace: triangular
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: fluid-simulation.akehir.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: fluid-simulation
+                port:
+                  number: 8001
+  tls:
+    - hosts:
+      - fluid-simulation.akehir.com
+      secretName: fluid-simulation-akehir-com
