@@ -36,8 +36,8 @@ module.exports = function (config) {
       }
     },
     browserConsoleLogOptions: {
-      level: 'log',
-      terminal: false
+      level: 'info',
+      terminal: true
     },
     singleRun: true
   });
