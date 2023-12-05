@@ -32,7 +32,7 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeDocker: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--use-angle=gl', '--in-process-gpu']
+        flags: ['--no-sandbox', '--use-vulkan=native', '--use-angle=vulkan', '--in-process-gpu']
       }
     },
     singleRun: false
