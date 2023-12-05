@@ -27,18 +27,14 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: true,
     browsers: ['Chrome'],
     customLaunchers: {
       ChromeDocker: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--use-angle=swiftshader', '--use-gl=angle', '--verbose']
+        flags: ['--no-sandbox', '--disable-gpu']
       }
     },
-    browserConsoleLogOptions: {
-      level: 'info',
-      terminal: true
-    },
-    singleRun: true
+    singleRun: false
   });
 };

@@ -27,7 +27,7 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: true,
     browsers: ['Chrome'],
     customLaunchers: {
       ChromeDocker: {
@@ -36,9 +36,9 @@ module.exports = function (config) {
       }
     },
     browserConsoleLogOptions: {
-      level: 'info',
+      level: 'debug',
       terminal: true
     },
-    singleRun: true
+    singleRun: flase
   });
 };
