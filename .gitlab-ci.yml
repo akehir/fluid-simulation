@@ -21,7 +21,6 @@ build:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   before_script:
     - export CHROME_BIN=/usr/bin/chromium
-    - unset DISPLAY
     - git submodule sync --recursive
     - git submodule update --init --recursive
     - npm i
