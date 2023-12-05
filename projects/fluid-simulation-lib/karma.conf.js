@@ -32,14 +32,9 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeDocker: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--verbose'],
-        browserConsoleLogOptions: {
-          level: 'debug',
-          terminal: true
-        },
+        flags: ['--no-sandbox', ],
       }
     },
-
     singleRun: false
   });
 };
