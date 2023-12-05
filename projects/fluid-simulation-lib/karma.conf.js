@@ -32,7 +32,7 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeDocker: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--use-angle=swiftshader', '--use-gl=angle', '--verbose']
+        flags: ['--no-sandbox', '--use-angle=swiftshader', '--use-gl=angle', '--in-process-gpu', '--verbose']
       }
     },
     browserConsoleLogOptions: {
