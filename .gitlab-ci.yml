@@ -14,7 +14,7 @@ variables:
 
 build:
   stage: build
-  image: registry.akehir.com:5050/infra/node-with-chromium/node-with-chromium:latest
+  image: registry.akehir.com:5050/infra/node-with-chrome/node-with-chrome:latest
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
     - if: '$CI_COMMIT_REF_SLUG == "develop"'

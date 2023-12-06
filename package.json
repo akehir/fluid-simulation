@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:full": "npm run build:lib && npm start -- --port=4404 --host=0.0.0.0",
+    "start": "ng serve --project example-app",
+    "start:full": "npm run build:lib && npm start --project example-app -- --port=4404 --host=0.0.0.0",
     "start:standalone": "ng serve --project example-app-standalone --host 0.0.0.0",
     "build": "npm run build:lib && npm run build:app && npm run build:standalone",
     "build:app": "npm run ng build example-app",
