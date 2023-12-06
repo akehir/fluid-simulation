@@ -55,7 +55,7 @@ deploy:
 
 publish:
   stage: publish
-  image: registry.akehir.com:5050/infra/node-with-chromium/node-with-chromium:latest
+  image: node:lts-alpine
   needs: ['build']
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
