@@ -131,7 +131,7 @@ export class FluidSimulationComponent implements OnDestroy, AfterViewInit {
   private displayMaterial: Material;
 
   constructor(
-    @Inject(DOCUMENT) document: any,
+    @Inject(DOCUMENT) document: Document,
     private zone: NgZone,
     private config: FluidSimulationService,
     ) {

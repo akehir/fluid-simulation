@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fluid-simulation
+  namespace: triangular
+spec:
+  selector:
+    app: fluid-simulation
+  ports:
+  - protocol: TCP
+    port: 8001
+    targetPort: 8811

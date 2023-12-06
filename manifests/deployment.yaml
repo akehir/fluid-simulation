@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluid-simulation
+  namespace: triangular
+spec:
+  selector:
+    matchLabels:
+      app: fluid-simulation
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fluid-simulation
+    spec:
+      containers:
+      - name: fluid-simulation-example-app
+        image: registry.akehir.com:5050/triangular/fluid-simulation/fluid-simulation-example-app:master
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8811
+      imagePullSecrets:
+      - name: deploy-triangular
