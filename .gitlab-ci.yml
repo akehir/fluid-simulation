@@ -6,12 +6,6 @@ stages:
   - deploy
   - publish
 
-variables:
-  DOCKER_HOST: tcp://docker:2376
-  DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_TLS_VERIFY: 1
-  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
-
 build:
   stage: build
   image: registry.akehir.com:5050/infra/node-with-chrome/node-with-chrome:latest
@@ -33,9 +27,8 @@ build:
 
 deploy:
   stage: deploy
-  image: docker:24.0.5
-  services:
-    - docker:24.0.5-dind
+  tags:
+    - metal
   needs: ['build']
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
