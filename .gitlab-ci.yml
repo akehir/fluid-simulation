@@ -6,15 +6,9 @@ stages:
   - deploy
   - publish
 
-variables:
-  DOCKER_HOST: tcp://docker:2376
-  DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_TLS_VERIFY: 1
-  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
-
 build:
   stage: build
-  image: registry.akehir.com:5050/infra/node-with-chrome/node-with-chrome:latest
+  image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome:latest
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
     - if: '$CI_COMMIT_REF_SLUG == "develop"'
@@ -33,22 +27,33 @@ build:
 
 deploy:
   stage: deploy
-  image: docker:24.0.5
-  services:
-    - docker:24.0.5-dind
+  tags:
+    - metal
   needs: ['build']
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
     - if: '$CI_COMMIT_REF_SLUG == "master"'
+      changes:
+        - src/**/*
+        - package.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
       when: on_success
     - if: '$CI_COMMIT_REF_SLUG == "develop"'
+      changes:
+        - src/**/*
+        - package.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
       when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE/fluid-simulation-example-app
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
+    - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA -t $IMAGE_TAG:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}-$(date +%s) .
     - docker push $IMAGE_TAG -a
 
 publish:
