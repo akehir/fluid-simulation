@@ -4,4 +4,4 @@ extends: default
 rules:
   line-length:
     max: 144
-    # level: warning
+    level: warning

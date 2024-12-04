@@ -1,6 +1,4 @@
-# Documentation
-# https://docs.gitlab.com/ee/ci/yaml/
-
+---
 stages:
   - build
   - deploy
