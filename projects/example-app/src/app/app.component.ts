@@ -3,9 +3,10 @@ import {ngModule, component, styles, service, moduleWithConfiguration} from './c
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: [],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: [],
+    standalone: false
 })
 export class AppComponent {
   title = 'Angular WebGL Fluid Simulation';

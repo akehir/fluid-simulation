@@ -25,6 +25,13 @@ build:
       - dist/
     expire_in: 1337 mins
 
+yaml-lint:
+  stage: build
+  image: registry.akehir.com/infra/yamllint/yamllint
+  script:
+    - yamllint --list-files .
+    - yamllint .
+
 deploy:
   stage: deploy
   tags:
