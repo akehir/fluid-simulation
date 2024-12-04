@@ -8,6 +8,7 @@ spec:
   selector:
     app: fluid-simulation
   ports:
-  - protocol: TCP
-    port: 8001
-    targetPort: 8811
+    - protocol: TCP
+      port: 8001
+      targetPort: 8811
+---
