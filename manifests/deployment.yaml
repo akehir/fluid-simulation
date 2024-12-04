@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,20 +15,21 @@ spec:
         app: fluid-simulation
     spec:
       containers:
-      - name: fluid-simulation-example-app
-        image: registry.akehir.com:443/triangular/fluid-simulation/fluid-simulation-example-app:develop-cf31d6a4-1717687056 # {"$imagepolicy": "triangular:fluid-simulation-example-app-image-policy"}
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8811
+        - name: fluid-simulation-example-app
+          image: registry.akehir.com:443/triangular/fluid-simulation/fluid-simulation-example-app:develop-40a0b303-1727801225 # {"$imagepolicy": "triangular:fluid-simulation-example-app-image-policy"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8811
       imagePullSecrets:
-      - name: deploy-triangular
+        - name: deploy-triangular
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: kubernetes.io/arch
-                operator: In
-                values:
-                - arm64
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - arm64
+---
