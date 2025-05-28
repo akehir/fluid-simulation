@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {FluidSimulationComponent, FluidSimulationService} from "@triangular/fluid-simulation";
 
 @Component({
     selector: 'app-root',
-    imports: [CommonModule, FluidSimulationComponent],
+    imports: [FluidSimulationComponent],
     providers: [FluidSimulationService],
     templateUrl: './app.component.html',
     styleUrls: []
