@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: fluid-simulation-example-app
-          image: registry.akehir.com:443/triangular/fluid-simulation/fluid-simulation-example-app:develop-7f33d3a1-1733324356 # {"$imagepolicy": "triangular:fluid-simulation-example-app-image-policy"}
+          image: registry.akehir.com:443/triangular/fluid-simulation/fluid-simulation-example-app:develop-e738b5f0-1748473932 # {"$imagepolicy": "triangular:fluid-simulation-example-app-image-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8811
