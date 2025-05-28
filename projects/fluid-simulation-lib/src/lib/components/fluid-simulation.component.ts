@@ -5,6 +5,7 @@ import {
   ViewChild,
   ViewEncapsulation,
   NgZone, Inject, OnDestroy,
+  DOCUMENT
 } from '@angular/core';
 
 import { FluidSimulationService } from '../services/fluid-simulation-service';
@@ -57,7 +58,7 @@ import {
 } from '../common';
 import { combineLatest, concat, defer, fromEvent, Observable, of } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { DOCUMENT } from '@angular/common';
+
 
 @Component({
   /* eslint-disable */
