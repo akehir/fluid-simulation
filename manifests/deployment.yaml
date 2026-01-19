@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: fluid-simulation-example-app
-          image: registry.akehir.com:443/triangular/fluid-simulation/fluid-simulation-example-app:develop-e738b5f0-1748473932 # {"$imagepolicy": "triangular:fluid-simulation-example-app-image-policy"}
+          image: registry.akehir.com:443/triangular/fluid-simulation/fluid-simulation-example-app:develop-179a3719-1768828841 # {"$imagepolicy": "triangular:fluid-simulation-example-app-image-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8811
@@ -45,4 +45,3 @@ spec:
                     values:
                       - fluid-simulation
               topologyKey: "kubernetes.io/hostname"
----
