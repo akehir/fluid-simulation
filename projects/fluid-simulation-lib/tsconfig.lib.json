@@ -12,10 +12,6 @@
     "importHelpers": true,
     "types": [
       "webgl2"
-    ],
-    "lib": [
-      "dom",
-      "es2018"
     ]
   },
   "angularCompilerOptions": {

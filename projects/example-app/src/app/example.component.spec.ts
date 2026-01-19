@@ -1,9 +1,9 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ExampleComponent } from './example.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
 
 describe('ExampleComponent', () => {
-  beforeEach(waitForAsync(() => {
+  beforeEach(() =>
     TestBed.configureTestingModule({
       declarations: [
         ExampleComponent
@@ -11,8 +11,8 @@ describe('ExampleComponent', () => {
       imports: [
         FluidSimulationModule.forRoot({}),
       ],
-    }).compileComponents();
-  }));
+    }).compileComponents()
+  );
 
   it('should create the component', () => {
     const fixture = TestBed.createComponent(ExampleComponent);

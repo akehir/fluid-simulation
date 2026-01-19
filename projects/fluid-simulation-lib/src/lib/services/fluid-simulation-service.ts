@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { FluidSimulationConfig, FluidSimulationConfigValue } from '../config/fluid-simulation-config';
 import { defaultConfig } from '../config/default-config';
 import { Partial } from '../common';
@@ -39,7 +39,9 @@ export class FluidSimulationService implements FluidSimulationConfig {
   DITHERING_TEXTURE: boolean;
   DITHERING_TEXTURE_URI: string;
 
-  constructor(@Optional() @Inject(FluidSimulationConfigValue) config: Partial<FluidSimulationConfig>) {
+  constructor() {
+    const config = inject<Partial<FluidSimulationConfig>>(FluidSimulationConfigValue, { optional: true });
+
     Object.assign(this, defaultConfig);
 
     if (config) {

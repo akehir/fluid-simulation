@@ -7,7 +7,12 @@ spec:
   selector:
     matchLabels:
       app: fluid-simulation
-  replicas: 1
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -15,7 +20,7 @@ spec:
     spec:
       containers:
         - name: fluid-simulation-example-app
-          image: registry.akehir.com:443/triangular/fluid-simulation/fluid-simulation-example-app:develop-7f33d3a1-1733324356 # {"$imagepolicy": "triangular:fluid-simulation-example-app-image-policy"}
+          image: registry.akehir.com:443/triangular/fluid-simulation/fluid-simulation-example-app:develop-e738b5f0-1748473932 # {"$imagepolicy": "triangular:fluid-simulation-example-app-image-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8811
@@ -31,3 +36,13 @@ spec:
                     operator: In
                     values:
                       - arm64
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: module
+                    operator: In
+                    values:
+                      - fluid-simulation
+              topologyKey: "kubernetes.io/hostname"
+---

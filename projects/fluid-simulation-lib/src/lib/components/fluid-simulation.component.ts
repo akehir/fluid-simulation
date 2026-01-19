@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  ViewChild,
-  ViewEncapsulation,
-  NgZone, Inject, OnDestroy,
-  DOCUMENT
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation, NgZone, OnDestroy, DOCUMENT, inject } from '@angular/core';
 
 import { FluidSimulationService } from '../services/fluid-simulation-service';
 
@@ -71,6 +63,9 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
   standalone: true
 })
 export class FluidSimulationComponent implements OnDestroy, AfterViewInit {
+  private zone = inject(NgZone);
+  private config = inject(FluidSimulationService);
+
   @ViewChild('canvas', {static: true}) canvasRef: ElementRef;
 
   private canvas: HTMLCanvasElement;
@@ -131,11 +126,9 @@ export class FluidSimulationComponent implements OnDestroy, AfterViewInit {
 
   private displayMaterial: Material;
 
-  constructor(
-    @Inject(DOCUMENT) document: Document,
-    private zone: NgZone,
-    private config: FluidSimulationService,
-    ) {
+  constructor() {
+    const document = inject<Document>(DOCUMENT);
+
     // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
     this.pageVisible$ = concat(
       defer(() => of(!document.hidden)),
