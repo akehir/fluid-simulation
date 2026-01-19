@@ -12,10 +12,10 @@
     "url": "https://github.com/akehir/fluid-simulation"
   },
   "bugs": { "url" : "https://github.com/akehir/fluid-simulation/issues"
-  , "email" : "raphael@ochsenbe.in"
+  , "email" : "raphael@akehir.com"
   },
   "author": { "name" : "Raphael Ochsenbein"
-            , "email" : "raphael@ochsenbe.in"
+            , "email" : "raphael@akehir.com"
             , "url" : "https://akehir.com/"
   },
   "dependencies": {
