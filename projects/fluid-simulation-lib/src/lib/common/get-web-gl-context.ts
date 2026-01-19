@@ -1,4 +1,5 @@
 import { getSupportedFormat } from './get-supported-format';
+import { getMockWebGlContext } from "./get-mock-web-gl-context";
 
 export function getWebGLContext(canvas: HTMLCanvasElement) {
   const params = { alpha: true, depth: false, stencil: false, antialias: false, preserveDrawingBuffer: false };
@@ -8,6 +9,11 @@ export function getWebGLContext(canvas: HTMLCanvasElement) {
   if (!isWebGL2) { // todo: this typecast is not true, but we're tricking typescript here
     gl = canvas.getContext('webgl', params) as WebGL2RenderingContext
       || canvas.getContext('experimental-webgl', params) as WebGL2RenderingContext;
+  }
+
+
+  if(!gl) {
+    gl = getMockWebGlContext();
   }
 
   let halfFloat;

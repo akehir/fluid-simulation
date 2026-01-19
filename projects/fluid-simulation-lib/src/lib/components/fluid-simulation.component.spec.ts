@@ -1,24 +1,26 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FluidSimulationComponent } from './fluid-simulation.component';
 
-import { RouterTestingModule } from '@angular/router/testing';
 import { FluidSimulationConfigValue } from '../config/fluid-simulation-config';
 import { defaultConfig } from '../config/default-config';
 import { FluidSimulationService } from '../services/fluid-simulation-service';
+import { provideZonelessChangeDetection } from "@angular/core";
+import { provideRouter } from "@angular/router";
 
 describe('FluidSimulationComponent', () => {
   let component: FluidSimulationComponent;
   let fixture: ComponentFixture<FluidSimulationComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() =>
     TestBed.configureTestingModule({
       declarations: [  ],
       imports: [
-        RouterTestingModule,
         FluidSimulationComponent
       ],
       providers: [
+        provideZonelessChangeDetection(),
+        provideRouter([]),
         {
           provide: FluidSimulationConfigValue,
           useValue: defaultConfig,
@@ -26,8 +28,8 @@ describe('FluidSimulationComponent', () => {
         FluidSimulationService,
       ],
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FluidSimulationComponent);
